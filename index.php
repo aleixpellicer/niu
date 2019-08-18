@@ -1,4 +1,10 @@
-<?php include 'config.php'; ?>
+<?php
+if(file_exists('config.php')){
+	include 'config.php';
+} else {
+	die('Please, duplicate the file config.sample.php and rename it to config.php, and then edit the created file with your own information');
+}
+?>
 <!DOCTYPE html>
 <html manifest="cache.manifest.php">
 <head>
