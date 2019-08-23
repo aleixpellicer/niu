@@ -31,7 +31,7 @@ if(file_exists('config.php')){
 
 	<ul class="last-tracks">
 		<li><span class="track-label">Battery level</span><span class="track-value"><data id="batteryLevel">-</data>%</span></li>
-		<li><span class="track-label">Charge to <?php echo $desiredChargeLevel; ?>%</span><span class="track-value"><data id="startCharging">-</data> - 07:30</span></li>
+		<li><span class="track-label">Charge to <?php echo $desiredChargeLevel; ?>%</span><span class="track-value"><data id="startCharging">-</data> - <?php echo (new DateTime($endChargingTime))->format('H:i'); ?></span></li>
 		<li><span class="track-label">Total distance</span><span class="track-value"><data id="totalMileage">-</data> Km.</span></li>
 	</ul>
 
