@@ -26,7 +26,7 @@
     <?php
     include 'config.php';
 
-    $rides = 'https://app-api.niu.com/v3/motor_data/track';
+    $rides = $apiUrl . '/v3/motor_data/track';
     $token_post = 'index=0&pagesize=100&token='.$token.'&sn='.$serialNumber;
 
       $curl = curl_init();
@@ -95,7 +95,7 @@
 
       $batteryUsage = ($startPoint - $ride->lastPoint->battery);
       $batteryPerKm = $batteryUsage / ($ride->distance/1000);
-      $powerUsage = (4200/100)*$batteryUsage;
+      $powerUsage = ($batteryCapacityWh/100)*$batteryUsage;
       $ridePrice = $powerUsage/1000 * 0.12;
       $carPrice = ($ride->distance/1000) * 0.075;
       $power100kms = ($powerUsage / ($ride->distance/1000)) * 100;

@@ -7,7 +7,7 @@ $ch1 = curl_init();
 $ch2 = curl_init();
 $ch3 = curl_init();
 
-$rides = 'https://app-api.niu.com/v3/motor_data/track';
+$rides = $apiUrl . '/v3/motor_data/track';
 curl_setopt_array($ch1, array(
   CURLOPT_URL => $rides,
   CURLOPT_POSTFIELDS => $token_post,
@@ -19,12 +19,11 @@ curl_setopt_array($ch1, array(
   CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
   CURLOPT_CUSTOMREQUEST => "POST",
   CURLOPT_HTTPHEADER => array(
-    "cache-control: no-cache",
-    "postman-token: e6166ae3-8b48-9654-5243-990930f38591"
+    "cache-control: no-cache"
   ),
 ));
 
-$battery = 'https://app-api.niu.com/v3/motor_data/index_info?sn='.$serialNumber;
+$battery = $apiUrl . '/v3/motor_data/index_info?sn='.$serialNumber;
 curl_setopt_array($ch2, array(
   CURLOPT_URL => $battery,
   CURLOPT_POSTFIELDS => $token_post,
@@ -36,12 +35,11 @@ curl_setopt_array($ch2, array(
   CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
   CURLOPT_CUSTOMREQUEST => "GET",
   CURLOPT_HTTPHEADER => array(
-    "cache-control: no-cache",
-    "postman-token: e6166ae3-8b48-9654-5243-990930f38591"
+    "cache-control: no-cache"
   ),
 ));
 
-$tally = 'https://app-api.niu.com/motoinfo/overallTally';
+$tally = $apiUrl . '/motoinfo/overallTally';
 curl_setopt_array($ch3, array(
   CURLOPT_URL => $tally,
   CURLOPT_POSTFIELDS => $token_post,
@@ -53,8 +51,7 @@ curl_setopt_array($ch3, array(
   CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
   CURLOPT_CUSTOMREQUEST => "POST",
   CURLOPT_HTTPHEADER => array(
-    "cache-control: no-cache",
-    "postman-token: e6166ae3-8b48-9654-5243-990930f38591"
+    "cache-control: no-cache"
   ),
 ));
 
@@ -111,7 +108,7 @@ $json_response['distance'] = round($ride->distance/1000, 1);
 
 $batteryUsage = ($ride->startPoint->battery - $ride->lastPoint->battery);
 $batteryPerKm = $batteryUsage / ($ride->distance/1000);
-$powerUsage = (4200/100)*$batteryUsage;
+$powerUsage = ($batteryCapacityWh/100)*$batteryUsage;
 $ridePrice = $powerUsage/1000 * $kwhPrice;
 
 $json_response['batteryUsage'] = $batteryUsage;
