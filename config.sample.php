@@ -15,6 +15,9 @@ $pass = 'yourpassword';
 // Your scooter's battery original capcity in Wh; For N-GT it is 4200Wh
 $batteryCapacityWh = 4200;
 
+// Number of batteries your NIU has (2 for N-GT and NPro, 1 for the rest of models)
+$batteryNumber = 2;
+
 // Your desired charge level
 $desiredChargeLevel = 60;
 
@@ -26,3 +29,6 @@ $minutesPercent = 3.14516129;
 
 // The current kWh price you're paying in your electricity bills
 $kwhPrice = 0.12;
+
+// Your currency
+$currency = '€';

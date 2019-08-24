@@ -91,7 +91,12 @@ $dtT = new DateTime("@$ride->ridingtime");
 $humanReadableSeconds = $dtF->diff($dtT)->format('%H:%I:%S');
 
 $json_response['totalMileage'] = $totalMileage->data->totalMileage;
-$json_response['batteryInfo'] = floor(($batteryInfo->data->batteries->compartmentA->batteryCharging + $batteryInfo->data->batteries->compartmentB->batteryCharging)/2);
+
+if($batteryNumber == 2){
+  $json_response['batteryInfo'] = floor(($batteryInfo->data->batteries->compartmentA->batteryCharging + $batteryInfo->data->batteries->compartmentB->batteryCharging)/2);
+} else {
+  $json_response['batteryInfo'] = $batteryInfo->data->batteries->compartmentA->batteryCharging;
+}
 
 $restToCharge = ($desiredChargeLevel - $json_response['batteryInfo']);
 $minutesToCharge = round($restToCharge * $minutesPercent);

@@ -96,14 +96,14 @@
       $batteryUsage = ($startPoint - $ride->lastPoint->battery);
       $batteryPerKm = $batteryUsage / ($ride->distance/1000);
       $powerUsage = ($batteryCapacityWh/100)*$batteryUsage;
-      $ridePrice = $powerUsage/1000 * 0.12;
+      $ridePrice = $powerUsage/1000 * $kwhPrice;
       $carPrice = ($ride->distance/1000) * 0.075;
       $power100kms = ($powerUsage / ($ride->distance/1000)) * 100;
-      $cost100kms = ($power100kms/1000) * 0.12;
+      $cost100kms = ($power100kms/1000) * $kwhPrice;
 
       echo '<td>-' . $batteryUsage .'%<br>' . round($powerUsage/1000, 1) .' kWh</td>';
       echo '<td>' . round($batteryPerKm, 2) .'%<br>' . round($power100kms/1000,1) .' kWh</td>';
-      echo '<td>' . round($ridePrice, 2) .' €</td>';
+      echo '<td>' . round($ridePrice, 2) .' '.$currency.'</td>';
       echo '</tr>';
 
       $totalAvespeed = $totalAvespeed + $ride->avespeed;
@@ -119,7 +119,7 @@
 
     $rows = count($tracks->data);
 
-    $totalRidingTime = $totalRidingTime/3600;
+    $totalRidingTime = $totalRidingTime / 3600;
     $totalDistance = $totalDistance / 1000;
     $totalAvespeed = $totalDistance / $totalRidingTime;
     $totalBatteryUsage = $totalBatteryUsage / $rows;
@@ -134,7 +134,7 @@
     echo '<td>' . round($totalRidingTime) . ' h<br>' . round($totalDistance) .' Km.</td>';
     echo '<td>-' . round($totalBatteryUsage) .'%<br>' . round($totalPowerUsage/1000, 1) .' kWh</td>';
     echo '<td>' . round($totalBatteryPerKm, 2) .' %<br>' . round($powerAverage100kms/1000, 1) .' kWh</td>';
-    echo '<td>' . round($totalRidePrice, 2) .' €</td>';
+    echo '<td>' . round($totalRidePrice, 2) .' '.$currency.'</td>';
     echo '</tr>';
 
     ?>

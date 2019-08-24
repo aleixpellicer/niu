@@ -46,7 +46,7 @@ if(file_exists('config.php')){
 		<li><span class="track-label">Battery/Km.</span><span class="track-value"><data id="batteryKm">-</data>%</span></li>
 		<li><span class="track-label">Duration</span><span class="track-value"><data id="duration">-</data></span></li>
 		<li><span class="track-label">Average Km/h</span><span class="track-value"><data id="averageSpeed">-</data> Km/h</span></li>
-		<li><span class="track-label">Ride cost</span><span class="track-value"><data id="rideCost">-</data> €</span></li>
+		<li><span class="track-label">Ride cost</span><span class="track-value"><data id="rideCost">-</data> <?php echo $currency; ?></span></li>
 	</ul>
 
 	<h3><a href="tracks.php">View more rides</a><a href="javascript: void(0)" id="reloadData">Reload data</a></h3>
